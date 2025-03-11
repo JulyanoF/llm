@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -12,11 +13,13 @@ ChatResponse.__setattr__ = allow_setattr
 
 app = Flask(__name__)
 
+LLM_SERVER_URL = os.getenv("LLM_SERVER_URL", "http://localhost:11434")
+
 INDEX_DIR = "./index_storage"
 
 embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-llm = Ollama(model="jbrsolutions", request_timeout=3000.0, host="localhost")
+llm = Ollama(model="jbrsolutions", request_timeout=3000.0, host=LLM_SERVER_URL)
 Settings.llm = llm
 
 storage_context = StorageContext.from_defaults(persist_dir=INDEX_DIR)

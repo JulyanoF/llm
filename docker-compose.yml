@@ -8,3 +8,11 @@ services:
       - ./data:/app/data
     ports:
       - "5000:5000"
+    environment:
+      LLM_SERVER_URL: http://localhost:11434
+      PORT: 3000
+      PG_HOST: host.docker.internal
+      DATABASE: mydb
+      PG_USER: postgres
+      PG_PASSWORD: 123
+      PG_PORT: 5432
