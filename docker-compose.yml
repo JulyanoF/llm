@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  llm-server:
+    build: ./llm-server
+    container_name: llm-server
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "5000:5000"

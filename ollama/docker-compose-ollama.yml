@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+        - 11434:11434
+    volumes:
+        - ./ollama/ollama:/root/.ollama
+        - ./docker-entrypoint.sh:/docker-entrypoint.sh
+        - ./Modelfile:/Modelfile
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    entrypoint: ["/usr/bin/bash", "/docker-entrypoint.sh"]
