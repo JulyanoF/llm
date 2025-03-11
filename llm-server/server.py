@@ -16,7 +16,7 @@ INDEX_DIR = "./index_storage"
 
 embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-llm = Ollama(model="llama2", request_timeout=3000.0, host="localhost")
+llm = Ollama(model="jbrsolutions", request_timeout=3000.0, host="localhost")
 Settings.llm = llm
 
 storage_context = StorageContext.from_defaults(persist_dir=INDEX_DIR)
